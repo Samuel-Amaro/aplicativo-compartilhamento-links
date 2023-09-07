@@ -1,6 +1,6 @@
 import { PropsIcon } from "@/utils/utils";
 
-export default function StackOverflow({ className }: PropsIcon) {
+export default function Twitch({ className }: PropsIcon) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
