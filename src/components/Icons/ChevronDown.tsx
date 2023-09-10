@@ -10,7 +10,7 @@ export default function ChevronDown({ className }: PropsIcon) {
       viewBox="0 0 14 9"
       className={className}
     >
-      <path stroke="#633CFF" stroke-width="2" d="m1 1 6 6 6-6" />
+      <path stroke="#633CFF" strokeWidth="2" d="m1 1 6 6 6-6" />
     </svg>
   );
 }
