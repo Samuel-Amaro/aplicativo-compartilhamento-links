@@ -2,6 +2,83 @@
 
 export type PropsIcon = { className?: string };
 
+export const patternsUrlsPlatforms: {
+  platform: string;
+  urlPlaceholder: string;
+  urlPattern: string;
+}[] = [
+  {
+    platform: "Frontend Mentor",
+    urlPlaceholder: "https://www.frontendmentor.io/profile/:username",
+    urlPattern: "https://www.frontendmentor.io/profile/.*",
+  },
+  {
+    platform: "GitHub",
+    urlPlaceholder: "https://www.github.com/:username",
+    urlPattern: "https://www.github.com/.*",
+  },
+  {
+    platform: "YouTube",
+    urlPlaceholder: "https://www.youtube.com/@username",
+    urlPattern: "https://www.youtube.com/.*",
+  },
+  {
+    platform: "Twitter",
+    urlPlaceholder: "https://twitter.com/:username",
+    urlPattern: "https://twitter.com/.*",
+  },
+  {
+    platform: "Linkedln",
+    urlPlaceholder: "https://www.linkedin.com/in/:username",
+    urlPattern: "https://www.linkedin.com/in/.*",
+  },
+  {
+    platform: "Facebook",
+    urlPlaceholder: "https://www.facebook.com/:username",
+    urlPattern: "https://www.facebook.com/.*",
+  },
+  {
+    platform: "Twitch",
+    urlPlaceholder: "https://www.twitch.tv/:username",
+    urlPattern: "https://www.twitch.tv/.*",
+  },
+  {
+    platform: "Dev.to",
+    urlPlaceholder: "https://dev.to/:username",
+    urlPattern: "https://dev.to/.*",
+  },
+  {
+    platform: "Codewars",
+    urlPlaceholder: "https://www.codewars.com/",
+    urlPattern: "https://www.codewars.com/.*",
+  },
+  {
+    platform: "Codepen",
+    urlPlaceholder: "https://codepen.io/:username",
+    urlPattern: "https://codepen.io/.*",
+  },
+  {
+    platform: "FreeCodeCamp",
+    urlPlaceholder: "https://www.freecodecamp.org/",
+    urlPattern: "https://www.freecodecamp.org/.*",
+  },
+  {
+    platform: "GitLab",
+    urlPlaceholder: "https://gitlab.com/:username",
+    urlPattern: "https://gitlab.com/.*",
+  },
+  {
+    platform: "Hashnode",
+    urlPlaceholder: "https://hashnode.com/@username",
+    urlPattern: "https://hashnode.com/.*",
+  },
+  {
+    platform: "Stack Overflow",
+    urlPlaceholder: "https://stackoverflow.com/users/:number/:username",
+    urlPattern: "https://stackoverflow.com/users/[0-9]*/.*",
+  },
+];
+
 /**
  * esta function encontrar elementos que podem receber foco dentro de um elemento pai certificando-se de excluir qualquer coisa com tabindex=-1. Também classificamos os elementos para seguir a ordem
  *
