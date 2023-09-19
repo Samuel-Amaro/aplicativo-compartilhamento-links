@@ -6,7 +6,7 @@ export type ActionTypeLinksReducer =
       customizeLink: CustomizeLink;
     }
   | { type: "changed_link"; customizeLink: CustomizeLink }
-  | { type: "delete_link"; id: string };
+  | { type: "delete_link"; id: string } | { type: "save_batches_link";  batchesLink: CustomizeLink[]};
 
 export function linksReducer(
   draft: CustomizeLink[],
@@ -15,6 +15,9 @@ export function linksReducer(
   switch (action.type) {
     case "save_new_link": {
       return [...draft, action.customizeLink];
+    }
+    case "save_batches_link": {
+      return [...draft, ...action.batchesLink];
     }
     case "changed_link": {
       return draft.map((link) => {
