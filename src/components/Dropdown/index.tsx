@@ -135,6 +135,8 @@ export default function Dropdown({
     value: string;
   }) {
     setOptionSelected(option);
+    setMenuDropdownIsOppen(false);
+    refBtnDropdown.current?.focus();
   }
 
   function handleKeyDownItemDropdown(
@@ -190,6 +192,8 @@ export default function Dropdown({
         case " ":
         case "Enter":
           setOptionSelected(option);
+          setMenuDropdownIsOppen(false);
+          refBtnDropdown.current?.focus();
           flag = true;
           break;
         default:
