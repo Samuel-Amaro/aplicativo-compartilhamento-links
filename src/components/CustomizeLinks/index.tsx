@@ -5,7 +5,7 @@ import {
   useLinksDispatchContext,
 } from "@/context/LinksContext";
 import Empty from "../Empty";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CustomizeLink } from "@/types/datas";
 import { nanoid } from "nanoid";
 import DragAndDrop from "../Icons/DragAndDrop";
@@ -23,6 +23,8 @@ export default function CustomizeLinks() {
   );
   const [validationsCustomizeLinksLocale, setValidationsCustomizeLinksLocale] =
     useState<Validation[]>([]);
+  const dragCustomLinkIndex = useRef<number>(0);
+  const draggedOverCustomLinkIndex = useRef<number>(0);
 
   function handleClickBtnAddNewLink() {
     const customizeLink: CustomizeLink = {
@@ -143,6 +145,7 @@ export default function CustomizeLinks() {
       const customLinkIsSavedContext = linksContext.customizeLinks.find(
         (cl) => cl.id === customLink.id,
       );
+      console.log(customLink);
       if (customLinkIsSavedContext) {
         linksContextDispatch({
           type: "changed_link",
@@ -158,13 +161,28 @@ export default function CustomizeLinks() {
   }
 
   function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
-    //TODO: ADD DRAG AND DROP SEM USAR LIB
     e.preventDefault();
     if (validationsCustomizeLinksLocale.length === 0) {
-      console.log("Pode salvar context");
       saveInContext();
-    } else {
-      console.log("Não pode salvar context");
+    }
+  }
+
+  function handleSort() {
+    const customLinksLocaleClone = [...customizeLinksLocale];
+    //obtem o custom link que esta sendo arrastado
+    const temp = customLinksLocaleClone[dragCustomLinkIndex.current];
+    //add o custom link que esta sendo usado como lugar de soltura no lugar do custom link que esta sendo arrastado
+    customLinksLocaleClone[dragCustomLinkIndex.current] =
+      customLinksLocaleClone[draggedOverCustomLinkIndex.current];
+    //add o custom link que esta sendo arrastado no lugar do custom link que esta sendo usado como lugar de soltura
+    customLinksLocaleClone[draggedOverCustomLinkIndex.current] = temp;
+    setCustomizeLinksLocale(customLinksLocaleClone);
+    if (validationsCustomizeLinksLocale.length === 0) {
+      linksContextDispatch({
+        type: "reorder_links",
+        sourceIndex: dragCustomLinkIndex.current,
+        targetIndex: draggedOverCustomLinkIndex.current,
+      });
     }
   }
 
@@ -215,7 +233,19 @@ export default function CustomizeLinks() {
               (validCustLink) => validCustLink.id === customLink.id,
             );
             return (
-              <div key={customLink.id}>
+              <div
+                key={customLink.id}
+                draggable="true"
+                id={customLink.id}
+                /*...o usuário começa a arrastar um item.*/
+                onDragStart={() => (dragCustomLinkIndex.current = index)}
+                /*...um item arrastado entra em um destino de soltura válido.*/
+                onDragEnter={() => (draggedOverCustomLinkIndex.current = index)}
+                /*...uma operação de arrastar termina (como soltar o botão do mouse ou pressionar a tecla Esc;*/
+                onDragEnd={handleSort}
+                /*...um item arrastado está sendo arrastado sobre um destino de soltar válido, a cada poucas centenas de milissegundos.*/
+                onDragOver={(e) => e.preventDefault()}
+              >
                 <div>
                   <button
                     type="button"
