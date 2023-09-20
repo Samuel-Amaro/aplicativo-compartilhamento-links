@@ -1,4 +1,5 @@
 import LinksContextProvider from "@/context/LinksContext";
+import "../styles/normalize.css";
 import "../styles/globals.css";
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
