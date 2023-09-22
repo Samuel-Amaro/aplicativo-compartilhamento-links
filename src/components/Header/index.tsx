@@ -7,22 +7,37 @@ import ProfileDetails from "../Icons/ProfileDetails";
 import Preview from "../Icons/Preview";
 import DevLinks from "../Icons/DevLinks";
 import useMatchMedia from "@/hooks/useMatchMedia";
+import { usePathname } from "next/navigation";
+import styles from "./styles.module.css";
 
 export default function Header() {
+  const pathname = usePathname();
   const mobile = (
-    <nav>
-      <Link href="/" rel="next" target="_self" title="Home" aria-label="Home">
-        <LogoSmall />
+    <nav className={styles.headerNav}>
+      <Link
+        href="/"
+        rel="next"
+        target="_self"
+        title="Home"
+        aria-label="Home"
+        className={`${styles.headerLink} ${styles.headerLogo}`}
+      >
+        <LogoSmall className={styles.headerIcon} />
       </Link>
-      <div>
+      <div className={styles.headerContainerNav}>
         <Link
-          href="/links"
+          href="/"
           target="_self"
           rel="next"
-          title="Ir para página Links"
-          aria-label="Ir para página Links"
+          title="Ir para página Home"
+          aria-label="Ir para página Home"
+          className={
+            "/" === pathname
+              ? `${styles.headerLink} ${styles.headerLinkNav} ${styles.headerLinkNavActive}`
+              : `${styles.headerLink} ${styles.headerLinkNav}`
+          }
         >
-          <LinkIcon />
+          <LinkIcon className={styles.headerIcon} />
         </Link>
         <Link
           href="/perfil"
@@ -30,8 +45,13 @@ export default function Header() {
           rel="next"
           title="Ir para página detalhes perfil"
           aria-label="Ir para página detalhes perfil"
+          className={
+            "/perfil" === pathname
+              ? `${styles.headerLink} ${styles.headerLinkNav} ${styles.headerLinkNavActive}`
+              : `${styles.headerLink} ${styles.headerLinkNav}`
+          }
         >
-          <ProfileDetails />
+          <ProfileDetails className={styles.headerIcon} />
         </Link>
       </div>
       <Link
@@ -40,6 +60,11 @@ export default function Header() {
         rel="next"
         title="Ir para página visualização"
         aria-label="Ir para página visualização"
+        className={
+          "/visualizar" === pathname
+            ? `${styles.headerLink} ${styles.headerLinkNavPreview} ${styles.headerLinkNavActive}`
+            : `${styles.headerLink} ${styles.headerLinkNavPreview}`
+        }
       >
         <Preview />
       </Link>
@@ -47,20 +72,32 @@ export default function Header() {
   );
 
   const desktop = (
-    <nav>
-      <Link href="/" rel="next" target="_self" title="Home" aria-label="Home">
-        <LogoSmall />
+    <nav className={styles.headerNav}>
+      <Link
+        href="/"
+        rel="next"
+        target="_self"
+        title="Home"
+        aria-label="Home"
+        className={styles.headerLogo}
+      >
+        <LogoSmall className={styles.headerIconLogo} />
         <DevLinks />
       </Link>
-      <div>
+      <div className={styles.headerContainerNav}>
         <Link
-          href="/links"
+          href="/"
           target="_self"
           rel="next"
           title="Ir para página Links"
           aria-label="Ir para página Links"
+          className={
+            "/" === pathname
+              ? `${styles.headerLink} ${styles.headerLinkNav} ${styles.headerLinkNavActive}`
+              : `${styles.headerLink} ${styles.headerLinkNav}`
+          }
         >
-          <LinkIcon />
+          <LinkIcon className={styles.headerIcon} />
           <span>Links</span>
         </Link>
         <Link
@@ -69,8 +106,13 @@ export default function Header() {
           rel="next"
           title="Ir para página detalhes perfil"
           aria-label="Ir para página detalhes perfil"
+          className={
+            "/perfil" === pathname
+              ? `${styles.headerLink} ${styles.headerLinkNav} ${styles.headerLinkNavActive}`
+              : `${styles.headerLink} ${styles.headerLinkNav}`
+          }
         >
-          <ProfileDetails />
+          <ProfileDetails className={styles.headerIcon} />
           <span>Detalhes de perfil</span>
         </Link>
       </div>
@@ -80,6 +122,11 @@ export default function Header() {
         rel="next"
         title="Ir para página visualização"
         aria-label="Ir para página visualização"
+        className={
+          "/visualizar" === pathname
+            ? `${styles.headerLink} ${styles.headerLinkNavPreview} ${styles.headerLinkNavActive}`
+            : `${styles.headerLink} ${styles.headerLinkNavPreview}`
+        }
       >
         Visualização
       </Link>
@@ -87,7 +134,7 @@ export default function Header() {
   );
 
   return (
-    <header>
+    <header className={styles.header}>
       {useMatchMedia({
         mobileContent: mobile,
         desktopContent: desktop,
