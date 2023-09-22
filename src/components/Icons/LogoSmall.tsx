@@ -1,4 +1,6 @@
-export default function LogoSmall() {
+import { PropsIcon } from "@/utils/utils";
+
+export default function LogoSmall({ className }: PropsIcon) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +8,7 @@ export default function LogoSmall() {
       height="32"
       fill="none"
       viewBox="0 0 32 32"
+      className={className}
     >
       <path
         fill="#633CFF"
