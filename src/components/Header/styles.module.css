@@ -1,0 +1,56 @@
+.header{
+  background-color: var(--White);
+  padding: 16px 16px 16px 24px;
+  border-radius: 12px;
+}
+
+.headerLink{
+  display: block;
+  text-decoration: none;
+}
+
+.headerIcon{
+  display: inline-block;
+}
+
+.headerLinkNav{
+  padding: 11px 27px;
+  border-radius: 8px;
+  color: var(--Grey);
+}
+
+.headerLinkNav:is(:hover, :focus) {
+  color: var(--purple);
+}
+
+.headerLinkNavPreview{
+  padding: 11px 16px;
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+}
+
+.headerLinkNavActive{
+  background-color: var(--Light-Purple);
+  color: var(--purple);
+}
+
+.headerIconNav{
+  color: var(--Grey);
+}
+
+.headerIconActive{
+  color: var(--purple);
+}
+
+.headerContainerNav{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.headerNav{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+}
