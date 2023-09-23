@@ -1,0 +1,87 @@
+.dropdownIcon{
+  display: inline-block;
+  /*color: var(--Dark-Grey);*/
+}
+
+.dropdownButton{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  appearance: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-weight: 400;
+  color: var(--Dark-Grey);
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: var(--White);
+  border: 1px solid var(--Borders);
+  cursor: pointer;
+}
+
+.dropdownButtonText{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.dropdownButtonIcon{
+  display: inline-block;
+}
+
+.dropdownButton[aria-expanded="true"] .dropdownButtonIcon{
+  transform: rotate(180deg);
+}
+
+.dropdownButton:is(:hover, :focus){
+  border-color: var(--purple);
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+  outline: none;
+}
+
+.containerDropdown {
+  position: relative;
+}
+
+.dropdownList{
+  list-style: none;
+  background-color: var(--White);
+  border-radius: 8px;
+  border: 1px solid var(--Borders);
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.10);
+  position: absolute;
+  z-index: 1001;
+  top: calc(100% + 8px);
+  padding: 0px 16px 0px 16px;
+  width: 100%;
+  max-height: 122px;
+  overflow-y: auto;
+}
+
+.dropdownListItem{
+  font-weight: 400;
+  color: var(--Dark-Grey);
+  padding: 12px 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.dropdownListItem:not(:last-child) {
+  border-bottom: 1px solid var(--Borders);
+}
+
+.dropdownListItemSelected{
+  color: var(--purple);
+}
+
+.dropdownListItem:is(:hover, :focus) {
+  outline: none;
+  border: 1px solid var(--purple);
+}
