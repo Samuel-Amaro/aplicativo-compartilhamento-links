@@ -1,0 +1,26 @@
+.container{
+  background-color: var(--Light-Grey);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.ilustration{
+  display: block;
+  max-width: 125px;
+  max-height: 80px;
+  height: auto;
+  margin: 0 auto 24px auto;
+}
+
+.title{
+  font-weight: 700;
+  text-align: center;
+  color: var(--Dark-Grey);
+  margin: 0 0 24px 0;
+}
+
+.description{
+  font-weight: 400;
+  color: var(--Grey);
+  text-align: center;
+}
