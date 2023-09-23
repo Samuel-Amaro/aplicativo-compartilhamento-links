@@ -24,22 +24,32 @@ import {
 } from "@/utils/utils";
 import LinkIcon from "../Icons/Link";
 import useOnClickOutside from "@/hooks/useOnClickOutside";
+import styles from "./styles.module.css";
 
 const datas = [
-  { icon: <GitHub />, value: "GitHub" },
-  { icon: <FrontEndMentor />, value: "Frontend Mentor" },
-  { icon: <Twitter />, value: "Twitter" },
-  { icon: <Linkedin />, value: "Linkedln" },
-  { icon: <YouTube />, value: "YouTube" },
-  { icon: <Facebook />, value: "Facebook" },
-  { icon: <Twitch />, value: "Twitch" },
-  { icon: <Devto />, value: "Dev.to" },
-  { icon: <Codewars />, value: "Codewars" },
-  { icon: <Codepen />, value: "Codepen" },
-  { icon: <Freecodecamp />, value: "FreeCodeCamp" },
-  { icon: <GitLab />, value: "GitLab" },
-  { icon: <HashNode />, value: "Hashnode" },
-  { icon: <StackOverflow />, value: "Stack Overflow" },
+  { icon: <GitHub className={styles.dropdownIcon} />, value: "GitHub" },
+  {
+    icon: <FrontEndMentor className={styles.dropdownIcon} />,
+    value: "Frontend Mentor",
+  },
+  { icon: <Twitter className={styles.dropdownIcon} />, value: "Twitter" },
+  { icon: <Linkedin className={styles.dropdownIcon} />, value: "Linkedln" },
+  { icon: <YouTube className={styles.dropdownIcon} />, value: "YouTube" },
+  { icon: <Facebook className={styles.dropdownIcon} />, value: "Facebook" },
+  { icon: <Twitch className={styles.dropdownIcon} />, value: "Twitch" },
+  { icon: <Devto className={styles.dropdownIcon} />, value: "Dev.to" },
+  { icon: <Codewars className={styles.dropdownIcon} />, value: "Codewars" },
+  { icon: <Codepen className={styles.dropdownIcon} />, value: "Codepen" },
+  {
+    icon: <Freecodecamp className={styles.dropdownIcon} />,
+    value: "FreeCodeCamp",
+  },
+  { icon: <GitLab className={styles.dropdownIcon} />, value: "GitLab" },
+  { icon: <HashNode className={styles.dropdownIcon} />, value: "Hashnode" },
+  {
+    icon: <StackOverflow className={styles.dropdownIcon} />,
+    value: "Stack Overflow",
+  },
 ];
 
 function getData(value: string) {
@@ -217,7 +227,7 @@ export default function Dropdown({
   });
 
   return (
-    <div ref={refContainerDropdown}>
+    <div ref={refContainerDropdown} className={styles.containerDropdown}>
       <button
         type="button"
         title={
@@ -238,14 +248,19 @@ export default function Dropdown({
         ref={refBtnDropdown}
         onClick={() => setMenuDropdownIsOppen(!menuDropdownIsOppen)}
         onKeyDown={handleKeyDownButton}
+        className={`bodyM ${styles.dropdownButton}`}
       >
-        <span>
+        <span className={styles.dropdownButtonText}>
           {optionSelected.icon} {optionSelected.value}
         </span>
-        <ChevronDown />
+        <ChevronDown className={styles.dropdownButtonIcon} />
       </button>
       {menuDropdownIsOppen && (
-        <ul id="list" aria-labelledby="buttonDrop">
+        <ul
+          id="list"
+          aria-labelledby="buttonDrop"
+          className={styles.dropdownList}
+        >
           {datas.map((d, index) => (
             <li
               key={index}
@@ -260,6 +275,11 @@ export default function Dropdown({
                   refItems.slice(index, 1);
                 }
               }}
+              className={
+                d.value.toLowerCase() === optionSelected.value.toLowerCase()
+                  ? `bodyM ${styles.dropdownListItem} ${styles.dropdownListItemSelected}`
+                  : `bodyM ${styles.dropdownListItem}`
+              }
             >
               {d.icon} {d.value}
             </li>
