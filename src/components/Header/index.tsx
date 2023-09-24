@@ -79,10 +79,10 @@ export default function Header() {
         target="_self"
         title="Home"
         aria-label="Home"
-        className={styles.headerLogo}
+        className={`${styles.headerLink} ${styles.headerLogo}`}
       >
         <LogoSmall className={styles.headerIconLogo} />
-        <DevLinks />
+        <DevLinks className={styles.headerIconTitle} />
       </Link>
       <div className={styles.headerContainerNav}>
         <Link
@@ -98,7 +98,7 @@ export default function Header() {
           }
         >
           <LinkIcon className={styles.headerIcon} />
-          <span>Links</span>
+          <span className={`headingS`}>Links</span>
         </Link>
         <Link
           href="/perfil"
@@ -113,7 +113,7 @@ export default function Header() {
           }
         >
           <ProfileDetails className={styles.headerIcon} />
-          <span>Detalhes de perfil</span>
+          <span className={`headingS`}>Detalhes de perfil</span>
         </Link>
       </div>
       <Link
@@ -124,8 +124,8 @@ export default function Header() {
         aria-label="Ir para página visualização"
         className={
           "/visualizar" === pathname
-            ? `${styles.headerLink} ${styles.headerLinkNavPreview} ${styles.headerLinkNavActive}`
-            : `${styles.headerLink} ${styles.headerLinkNavPreview}`
+            ? `${styles.headerLink} ${styles.headerLinkNavPreview} headingS ${styles.headerLinkNavActive}`
+            : `${styles.headerLink} headingS ${styles.headerLinkNavPreview}`
         }
       >
         Visualização
@@ -138,7 +138,7 @@ export default function Header() {
       {useMatchMedia({
         mobileContent: mobile,
         desktopContent: desktop,
-        mediaQuery: "(min-width: 700px)",
+        mediaQuery: "(min-width: 768px)",
       })}
     </header>
   );
