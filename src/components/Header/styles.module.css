@@ -1,19 +1,19 @@
-.header{
+.header {
   background-color: var(--White);
   padding: 16px 16px 16px 24px;
   border-radius: 12px;
 }
 
-.headerLink{
+.headerLink {
   display: block;
   text-decoration: none;
 }
 
-.headerIcon{
+.headerIcon {
   display: inline-block;
 }
 
-.headerLinkNav{
+.headerLinkNav {
   padding: 11px 27px;
   border-radius: 8px;
   color: var(--Grey);
@@ -23,34 +23,60 @@
   color: var(--purple);
 }
 
-.headerLinkNavPreview{
+.headerLinkNavPreview {
   padding: 11px 16px;
   border: 1px solid var(--purple);
   border-radius: 8px;
 }
 
-.headerLinkNavActive{
+.headerLinkNavActive {
   background-color: var(--Light-Purple);
   color: var(--purple);
 }
 
-.headerIconNav{
+.headerIconNav {
   color: var(--Grey);
 }
 
-.headerIconActive{
+.headerIconActive {
   color: var(--purple);
 }
 
-.headerContainerNav{
+.headerContainerNav {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
 }
 
-.headerNav{
+.headerNav {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    margin: 0 0 24px 0;
+  }
+
+  .headerLogo {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .headerLinkNav {
+    font-weight: 600;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .headerLinkNavPreview {
+    padding: 11px 27px;
+    font-weight: 600;
+  }
 }
