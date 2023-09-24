@@ -1,0 +1,166 @@
+.customLinksTitle {
+  font-weight: 700;
+  color: var(--Dark-Grey);
+  margin: 0 0 8px 0;
+}
+
+.customLinksDescription {
+  font-weight: 400;
+  color: var(--Grey);
+  margin: 0 0 40px 0;
+}
+
+.customLinksButton {
+  display: block;
+  font-family: inherit;
+  box-sizing: border-box;
+  appearance: none;
+  cursor: pointer;
+}
+
+.customLinksButtonAdd {
+  padding: 11px 27px;
+  border-radius: 8px;
+  width: 100%;
+  margin: 0 0 24px 0;
+}
+
+.customLinksRepeat {
+  padding: 20px;
+  background-color: var(--Light-Grey);
+  border-radius: 12px;
+}
+
+.customLinksRepeat:not(:last-child) {
+  margin: 0 0 24px 0;
+}
+
+.customLinksFormGroupContainer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin: 0 0 12px 0;
+}
+
+.customLinksIcon {
+  display: inline-block;
+  fill: currentColor;
+  font-weight: 700;
+}
+
+.customLinksBtnDragDrop {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--Grey);
+}
+
+.customLinksBtnRemove {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--Grey);
+}
+
+.customLinkLabel {
+  display: block;
+  color: var(--Dark-Grey);
+  font-weight: 400;
+  margin: 0 0 4px 0;
+}
+
+.customLinksFormGroup {
+  margin: 0 0 12px 0;
+}
+
+.customLinkInput {
+  display: block;
+  box-sizing: border-box;
+  font-family: inherit;
+  appearance: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--Dark-Grey);
+  background-color: var(--White);
+  width: 100%;
+  border: 1px solid var(--Borders);
+  padding: 12px 16px 12px 44px;
+  border-radius: 8px;
+}
+
+.customLinkInput::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(51, 51, 51, 0.5);
+  background-color: var(--White);
+}
+
+.customLinkInput:is(:hover, :focus) {
+  outline: none;
+  border-color: var(--purple);
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+}
+
+.customLinkIconInput {
+  display: block;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.customLinkContainerGroup {
+  position: relative;
+}
+
+.customLinkInputError {
+  border-color: var(--Red);
+  color: var(--Red);
+  padding: 12px 125px 12px 44px;
+}
+
+.customLinkMessageValidation {
+  display: block;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 400;
+  color: var(--Red);
+}
+
+
+.customLinkLineDiviser{
+  display: block;
+  background-color: var(--Borders);
+  border: none;
+  height: 1px;
+  width: 100%;
+  margin: 24px 0 0 0;
+}
+
+.customLinkBtnSave{
+  font-weight: 600;
+  padding: 11px 27px;
+  border-radius: 8px;
+  border: none;
+  width: calc(100% - 32px);
+  margin: 16px 16px 0 16px;
+}
+
+.customLinks{
+  padding: 0 0 16px 0;
+}
