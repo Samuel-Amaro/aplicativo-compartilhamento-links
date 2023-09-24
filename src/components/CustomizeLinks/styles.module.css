@@ -142,8 +142,7 @@
   color: var(--Red);
 }
 
-
-.customLinkLineDiviser{
+.customLinkLineDiviser {
   display: block;
   background-color: var(--Borders);
   border: none;
@@ -152,7 +151,7 @@
   margin: 24px 0 0 0;
 }
 
-.customLinkBtnSave{
+.customLinkBtnSave {
   font-weight: 600;
   padding: 11px 27px;
   border-radius: 8px;
@@ -161,6 +160,21 @@
   margin: 16px 16px 0 16px;
 }
 
-.customLinks{
+.customLinks {
   padding: 0 0 16px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .customLinkLineDiviser {
+    margin: 40px 0 0 0;
+  }
+
+  .customLinkBtnSave {
+    width: auto;
+    margin: 24px 0 0 auto;
+  }
+
+  .customLinks {
+    padding: 0 0 24px 0;
+  }
 }
