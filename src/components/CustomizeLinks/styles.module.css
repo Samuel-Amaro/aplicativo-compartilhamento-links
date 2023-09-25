@@ -178,3 +178,20 @@
     padding: 0 0 24px 0;
   }
 }
+
+@media screen and (min-width: 950px) {
+  .customLinks {
+    background-color: var(--White);
+    padding: 40px 40px 24px 40px;
+    border-radius: 12px;
+  }
+
+  .form {
+    max-height: 488px;
+    overflow-y: auto;
+  }
+
+  .customLinkLineDiviser {
+    margin: 24px 0 0 0;
+  }
+}
