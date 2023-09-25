@@ -14,3 +14,13 @@
     margin: 24px;
   }
 }
+
+@media screen and (min-width: 950px) {
+  .main{
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(min-content, 560px) minmax(min-content, 810px);
+    background-color: transparent;
+    gap: 24px;
+  }
+}
