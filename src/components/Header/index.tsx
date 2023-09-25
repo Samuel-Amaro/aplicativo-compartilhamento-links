@@ -62,8 +62,8 @@ export default function Header() {
         aria-label="Ir para página visualização"
         className={
           "/visualizar" === pathname
-            ? `${styles.headerLink} ${styles.headerLinkNavPreview} ${styles.headerLinkNavActive}`
-            : `${styles.headerLink} ${styles.headerLinkNavPreview}`
+            ? `${styles.headerLink} ${styles.headerLinkNavPreview} ${styles.headerLinkNavPreviewHover} ${styles.headerLinkNavActive}`
+            : `${styles.headerLink} ${styles.headerLinkNavPreview} ${styles.headerLinkNavPreviewHover}`
         }
       >
         <Preview />
@@ -124,8 +124,8 @@ export default function Header() {
         aria-label="Ir para página visualização"
         className={
           "/visualizar" === pathname
-            ? `${styles.headerLink} ${styles.headerLinkNavPreview} headingS ${styles.headerLinkNavActive}`
-            : `${styles.headerLink} headingS ${styles.headerLinkNavPreview}`
+            ? `${styles.headerLink} headingS ${styles.headerLinkNavPreview} ${styles.headerLinkNavPreviewHover} ${styles.headerLinkNavActive}`
+            : `${styles.headerLink} headingS ${styles.headerLinkNavPreview} ${styles.headerLinkNavPreviewHover}`
         }
       >
         Visualização
