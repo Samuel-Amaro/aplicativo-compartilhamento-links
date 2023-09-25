@@ -146,7 +146,6 @@ export default function CustomizeLinks() {
       const customLinkIsSavedContext = linksContext.customizeLinks.find(
         (cl) => cl.id === customLink.id,
       );
-      console.log(customLink);
       if (customLinkIsSavedContext) {
         linksContextDispatch({
           type: "changed_link",
@@ -226,7 +225,7 @@ export default function CustomizeLinks() {
       {customizeLinksLocale.length === 0 ? (
         <Empty />
       ) : (
-        <form id="form-links" onSubmit={handleSubmitForm}>
+        <form id="form-links" onSubmit={handleSubmitForm} className={styles.form}>
           <div>
             {customizeLinksLocale.map((customLink, index) => {
               const datasValidation = patternsUrlsPlatforms.find(
