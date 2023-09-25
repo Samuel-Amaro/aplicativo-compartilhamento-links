@@ -1,0 +1,9 @@
+.container{
+  background-color: var(--White);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
