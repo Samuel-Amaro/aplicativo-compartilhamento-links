@@ -34,6 +34,10 @@
   color: var(--purple);
 }
 
+.headerLinkNavPreviewHover:is(:hover, :focus) {
+  background-color: var(--Light-Purple);
+}
+
 .headerIconNav {
   color: var(--Grey);
 }
