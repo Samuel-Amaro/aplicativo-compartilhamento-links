@@ -26,6 +26,7 @@ h6 {
   --Light-Grey: #fafafa;
   --White: #ffffff;
   --Red: #ff3939;
+  --color-01: #EEEEEE;
 }
 
 body {
@@ -86,6 +87,62 @@ body {
 
 .buttonSecondary:disabled {
   opacity: 0.25;
+}
+
+.bggithub{
+  background-color: #1A1A1A;
+}
+
+.bgfrontendmentor{
+  background-color: #FFFFFF;
+}
+
+.bgtwitter{
+  background-color: #43B7E9;
+}
+
+.bglinkedln{
+  background-color: #2D68FF;
+}
+
+.bgyoutube{
+  background-color: #EE3939;
+}
+
+.bgfacebook{
+  background-color: #2442AC;
+}
+
+.bgtwitch {
+  background-color: #EE3FC8;
+}
+
+.bgdevto{
+  background-color: var(--Dark-Grey);
+}
+
+.bgcodewars{
+  background-color: #8A1A50;
+}
+
+.bgcodepen{
+  background-color: #47CF73;
+}
+
+.bgfreecodecamp{
+  background-color: #302267;
+}
+
+.bggitlab{
+  background-color: #EB4925;
+}
+
+.bghashnode{
+  background-color: #0330D1;
+}
+
+.bgstackoverflow{
+  background-color: #EC7100;
 }
 
 @media screen and (min-width: 768px) {
