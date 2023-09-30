@@ -13,6 +13,8 @@ import Dropdown from "../Dropdown";
 import Image from "next/image";
 import { patternsUrlsPlatforms } from "@/utils/utils";
 import styles from "./styles.module.css";
+import Notification from "../Notification";
+import Save from "../Icons/Save";
 
 type Validation = { id: string; isValid: boolean; message: string };
 
@@ -24,6 +26,7 @@ export default function CustomizeLinks() {
   );
   const [validationsCustomizeLinksLocale, setValidationsCustomizeLinksLocale] =
     useState<Validation[]>([]);
+  const [showNotification, setShowNotification] = useState(false);
   const dragCustomLinkIndex = useRef<number>(0);
   const draggedOverCustomLinkIndex = useRef<number>(0);
 
@@ -164,6 +167,7 @@ export default function CustomizeLinks() {
     e.preventDefault();
     if (validationsCustomizeLinksLocale.length === 0) {
       saveInContext();
+      setShowNotification(true);
     }
   }
 
@@ -204,155 +208,173 @@ export default function CustomizeLinks() {
   }, [customizeLinksLocale]);
 
   return (
-    <section className={styles.customLinks}>
-      <h1 className={`headingM ${styles.customLinksTitle}`}>
-        Personalize seus links
-      </h1>
-      <p className={`bodyM ${styles.customLinksDescription}`}>
-        Adicione/edite/remova links abaixo e compartilhe todos os seus perfis
-        com o mundo!
-      </p>
-      <button
-        type="button"
-        title="Adicionar novo link"
-        aria-label="Adicionar novo link"
-        onClick={handleClickBtnAddNewLink}
-        onKeyDown={handleKeyDownBtnAddNewLink}
-        className={`buttonSecondary ${styles.customLinksButton} ${styles.customLinksButtonAdd}`}
-      >
-        + Adicionar novo link
-      </button>
-      {customizeLinksLocale.length === 0 ? (
-        <Empty />
-      ) : (
-        <form id="form-links" onSubmit={handleSubmitForm} className={styles.form}>
-          <div>
-            {customizeLinksLocale.map((customLink, index) => {
-              const datasValidation = patternsUrlsPlatforms.find(
-                (patterUrl) =>
-                  patterUrl.platform.toLowerCase() ===
-                  customLink.plataform.toLowerCase(),
-              );
-              const validation = validationsCustomizeLinksLocale.find(
-                (validCustLink) => validCustLink.id === customLink.id,
-              );
-              return (
-                <div
-                  key={customLink.id}
-                  draggable="true"
-                  id={customLink.id}
-                  /*...o usuário começa a arrastar um item.*/
-                  onDragStart={() => (dragCustomLinkIndex.current = index)}
-                  /*...um item arrastado entra em um destino de soltura válido.*/
-                  onDragEnter={() =>
-                    (draggedOverCustomLinkIndex.current = index)
-                  }
-                  /*...uma operação de arrastar termina (como soltar o botão do mouse ou pressionar a tecla Esc;*/
-                  onDragEnd={handleSort}
-                  /*...um item arrastado está sendo arrastado sobre um destino de soltar válido, a cada poucas centenas de milissegundos.*/
-                  onDragOver={(e) => e.preventDefault()}
-                  className={styles.customLinksRepeat}
-                >
-                  <div className={styles.customLinksFormGroupContainer}>
-                    <button
-                      type="button"
-                      title="Arrastar ou soltar bloco de link customizavel"
-                      aria-label="Arrastar ou soltar bloco de link customizavel"
-                      className={`${styles.customLinksButton} ${styles.customLinksBtnDragDrop}`}
-                    >
-                      <DragAndDrop className={styles.customLinksIcon} />
-                      <span>Link {`#${index + 1}`}</span>
-                    </button>
-                    <button
-                      type="button"
-                      title="Remover"
-                      aria-label="Remover"
-                      onClick={() => handleClickBtnRemove(customLink.id)}
-                      onKeyDown={(e) =>
-                        handleKeyDownBtnRemove(e, customLink.id)
-                      }
-                      className={`${styles.customLinksButton} ${styles.customLinksBtnRemove}`}
-                    >
-                      Remover
-                    </button>
-                  </div>
-                  <div className={styles.customLinksFormGroup}>
-                    <label
-                      htmlFor={`platform${customLink.id}`}
-                      className={`bodyS ${styles.customLinkLabel}`}
-                    >
-                      Plataforma
-                    </label>
-                    <Dropdown
-                      onChange={(value: string) =>
-                        handleOnChangeDropdown(customLink.id, value)
-                      }
-                      currentValue={customLink.plataform}
-                      labelledby={`platform${customLink.id}`}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor={`link${customLink.id}`}
-                      className={`bodyS ${styles.customLinkLabel}`}
-                    >
-                      Link
-                    </label>
-                    <div className={styles.customLinkContainerGroup}>
-                      <Image
-                        src={"./images/icon-link.svg"}
-                        alt={""}
-                        aria-hidden="true"
-                        width={16}
-                        height={16}
-                        className={styles.customLinkIconInput}
-                      />
-                      <input
-                        type="url"
-                        id={`link${customLink.id}`}
-                        title={`Insira link no seguinte formato ${
-                          datasValidation && datasValidation.urlPlaceholder
-                        }`}
-                        required
-                        value={customLink.link.toLowerCase()}
-                        onChange={(e) => handleChangeInputUrl(customLink.id, e)}
-                        placeholder={
-                          datasValidation && datasValidation.urlPlaceholder
+    <>
+      <section className={styles.customLinks}>
+        <h1 className={`headingM ${styles.customLinksTitle}`}>
+          Personalize seus links
+        </h1>
+        <p className={`bodyM ${styles.customLinksDescription}`}>
+          Adicione/edite/remova links abaixo e compartilhe todos os seus perfis
+          com o mundo!
+        </p>
+        <button
+          type="button"
+          title="Adicionar novo link"
+          aria-label="Adicionar novo link"
+          onClick={handleClickBtnAddNewLink}
+          onKeyDown={handleKeyDownBtnAddNewLink}
+          className={`buttonSecondary ${styles.customLinksButton} ${styles.customLinksButtonAdd}`}
+        >
+          + Adicionar novo link
+        </button>
+        {customizeLinksLocale.length === 0 ? (
+          <Empty />
+        ) : (
+          <form
+            id="form-links"
+            onSubmit={handleSubmitForm}
+            className={styles.form}
+          >
+            <div>
+              {customizeLinksLocale.map((customLink, index) => {
+                const datasValidation = patternsUrlsPlatforms.find(
+                  (patterUrl) =>
+                    patterUrl.platform.toLowerCase() ===
+                    customLink.plataform.toLowerCase(),
+                );
+                const validation = validationsCustomizeLinksLocale.find(
+                  (validCustLink) => validCustLink.id === customLink.id,
+                );
+                return (
+                  <div
+                    key={customLink.id}
+                    draggable="true"
+                    id={customLink.id}
+                    /*...o usuário começa a arrastar um item.*/
+                    onDragStart={() => (dragCustomLinkIndex.current = index)}
+                    /*...um item arrastado entra em um destino de soltura válido.*/
+                    onDragEnter={() =>
+                      (draggedOverCustomLinkIndex.current = index)
+                    }
+                    /*...uma operação de arrastar termina (como soltar o botão do mouse ou pressionar a tecla Esc;*/
+                    onDragEnd={handleSort}
+                    /*...um item arrastado está sendo arrastado sobre um destino de soltar válido, a cada poucas centenas de milissegundos.*/
+                    onDragOver={(e) => e.preventDefault()}
+                    className={styles.customLinksRepeat}
+                  >
+                    <div className={styles.customLinksFormGroupContainer}>
+                      <button
+                        type="button"
+                        title="Arrastar ou soltar bloco de link customizavel"
+                        aria-label="Arrastar ou soltar bloco de link customizavel"
+                        className={`${styles.customLinksButton} ${styles.customLinksBtnDragDrop}`}
+                      >
+                        <DragAndDrop className={styles.customLinksIcon} />
+                        <span>Link {`#${index + 1}`}</span>
+                      </button>
+                      <button
+                        type="button"
+                        title="Remover"
+                        aria-label="Remover"
+                        onClick={() => handleClickBtnRemove(customLink.id)}
+                        onKeyDown={(e) =>
+                          handleKeyDownBtnRemove(e, customLink.id)
                         }
-                        pattern={datasValidation && datasValidation.urlPattern}
-                        className={
-                          validation
-                            ? `${styles.customLinkInput} ${styles.customLinkInputError}`
-                            : styles.customLinkInput
+                        className={`${styles.customLinksButton} ${styles.customLinksBtnRemove}`}
+                      >
+                        Remover
+                      </button>
+                    </div>
+                    <div className={styles.customLinksFormGroup}>
+                      <label
+                        htmlFor={`platform${customLink.id}`}
+                        className={`bodyS ${styles.customLinkLabel}`}
+                      >
+                        Plataforma
+                      </label>
+                      <Dropdown
+                        onChange={(value: string) =>
+                          handleOnChangeDropdown(customLink.id, value)
                         }
+                        currentValue={customLink.plataform}
+                        labelledby={`platform${customLink.id}`}
                       />
-                      {validation && (
-                        <span
-                          role="alert"
-                          className={`bodyS ${styles.customLinkMessageValidation}`}
-                        >
-                          {validation.message}
-                        </span>
-                      )}
+                    </div>
+                    <div>
+                      <label
+                        htmlFor={`link${customLink.id}`}
+                        className={`bodyS ${styles.customLinkLabel}`}
+                      >
+                        Link
+                      </label>
+                      <div className={styles.customLinkContainerGroup}>
+                        <Image
+                          src={"./images/icon-link.svg"}
+                          alt={""}
+                          aria-hidden="true"
+                          width={16}
+                          height={16}
+                          className={styles.customLinkIconInput}
+                        />
+                        <input
+                          type="url"
+                          id={`link${customLink.id}`}
+                          title={`Insira link no seguinte formato ${
+                            datasValidation && datasValidation.urlPlaceholder
+                          }`}
+                          required
+                          value={customLink.link.toLowerCase()}
+                          onChange={(e) =>
+                            handleChangeInputUrl(customLink.id, e)
+                          }
+                          placeholder={
+                            datasValidation && datasValidation.urlPlaceholder
+                          }
+                          pattern={
+                            datasValidation && datasValidation.urlPattern
+                          }
+                          className={
+                            validation
+                              ? `${styles.customLinkInput} ${styles.customLinkInputError}`
+                              : styles.customLinkInput
+                          }
+                        />
+                        {validation && (
+                          <span
+                            role="alert"
+                            className={`bodyS ${styles.customLinkMessageValidation}`}
+                          >
+                            {validation.message}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </form>
+                );
+              })}
+            </div>
+          </form>
+        )}
+        <hr className={styles.customLinkLineDiviser} />
+        <button
+          type="submit"
+          title="Salvar"
+          aria-label="Salvar"
+          form="form-links"
+          className={`${styles.customLinksButton} buttonPrimary ${styles.customLinkBtnSave}`}
+          disabled={customizeLinksLocale.length === 0}
+        >
+          Salvar
+        </button>
+      </section>
+      {showNotification && (
+        <Notification
+          showNotification={showNotification}
+          setShowNotification={(show: boolean) => setShowNotification(show)}
+          message="Suas mudanças foram salvas com sucesso!"
+          icon={<Save />}
+        />
       )}
-      <hr className={styles.customLinkLineDiviser} />
-      <button
-        type="submit"
-        title="Salvar"
-        aria-label="Salvar"
-        form="form-links"
-        className={`${styles.customLinksButton} buttonPrimary ${styles.customLinkBtnSave}`}
-        disabled={customizeLinksLocale.length === 0}
-      >
-        Salvar
-      </button>
-    </section>
+    </>
   );
 }
