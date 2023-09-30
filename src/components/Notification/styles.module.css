@@ -1,0 +1,32 @@
+.notification {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background-color: var(--Dark-Grey);
+  color: var(--Light-Grey);
+  position: fixed;
+  bottom: 40px;
+  margin: 0 24px 0 24px;
+  box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.1);
+}
+
+.text {
+  display: inline-block;
+  color: var(--Light-Grey);
+  flex: 1 1 auto;
+}
+
+.notification:first-child {
+  flex: 0 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .notification {
+    margin: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
