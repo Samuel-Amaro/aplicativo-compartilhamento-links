@@ -79,6 +79,39 @@ export const patternsUrlsPlatforms: {
   },
 ];
 
+export const fileTypes = [
+  "image/apng",
+  "image/bmp",
+  "image/gif",
+  "image/jpeg",
+  "image/pjpeg",
+  "image/png",
+  "image/svg+xml",
+  "image/tiff",
+  "image/webp",
+  "image/x-icon",
+];
+
+export function isValidDimensionsImage(file: File) {
+  return new Promise<boolean>((resolve) => {
+    const image = new Image();
+    image.src = URL.createObjectURL(file);
+    image.onload = () => {
+      console.log(image.width);
+      console.log(image.height);
+      if (image.width <= 1024 && image.height <= 1024) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    };
+  });
+}
+
+export function validFileType(file: File) {
+  return fileTypes.includes(file.type);
+}
+
 /**
  * esta function encontrar elementos que podem receber foco dentro de um elemento pai certificando-se de excluir qualquer coisa com tabindex=-1. Também classificamos os elementos para seguir a ordem
  *
