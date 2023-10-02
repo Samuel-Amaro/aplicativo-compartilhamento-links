@@ -3,6 +3,7 @@ import "../styles/normalize.css";
 import "../styles/globals.css";
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
+import ProfileContextProvider from "@/context/ProfileContext";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -47,7 +48,9 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={instrumentSans.className}>
-        <LinksContextProvider>{children}</LinksContextProvider>
+        <LinksContextProvider>
+          <ProfileContextProvider>{children}</ProfileContextProvider>
+        </LinksContextProvider>
       </body>
     </html>
   );
