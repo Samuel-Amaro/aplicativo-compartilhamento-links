@@ -97,8 +97,6 @@ export function isValidDimensionsImage(file: File) {
     const image = new Image();
     image.src = URL.createObjectURL(file);
     image.onload = () => {
-      console.log(image.width);
-      console.log(image.height);
       if (image.width <= 1024 && image.height <= 1024) {
         resolve(true);
       } else {
