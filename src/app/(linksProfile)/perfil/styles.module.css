@@ -1,0 +1,14 @@
+.title{
+  color: var(--Dark-Grey);
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.description{
+  color: var(--Grey);
+  font-weight: 400;
+}
+
+.header{
+  margin: 0 0 40px 0;
+}
