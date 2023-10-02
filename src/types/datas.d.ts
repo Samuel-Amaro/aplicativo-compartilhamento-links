@@ -1,16 +1,17 @@
-export type ProfileContext = {
-  profileDetails: ProfileDetails;
-};
-
 export type LinksContext = {
   customizeLinks: CustomizeLink[];
 };
 
+export type ProfileContext = {
+  profileDetails: ProfileDetails;
+  addProfile: (profile: ProfileDetails) => void;
+};
+
 export type ProfileDetails = {
-  profilePicture: string;
+  dataUrlPicture?: string;
   firstName: string;
   lastName: string;
-  email: string;
+  email?: string;
 };
 
 export type CustomizeLink = {
