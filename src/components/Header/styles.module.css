@@ -83,5 +83,6 @@
   .headerLinkNavPreview {
     padding: 11px 27px;
     font-weight: 600;
+    color: var(--purple);
   }
 }
