@@ -152,7 +152,7 @@ export default function Profile() {
   return (
     <>
       <form onSubmit={handleSubmitForm} className={styles.form}>
-        <fieldset className={styles.formFieldset}>
+        <fieldset className={`${styles.formFieldset} ${styles.formFieldsetContainer}`}>
           <span
             id="label-picture"
             className={`bodyM ${styles.formLabel} ${styles.formFieldsetPictureLabel}`}
@@ -283,7 +283,12 @@ export default function Profile() {
           </div>
         </fieldset>
         <hr className={styles.lineDiviser} />
-        <button type="submit" title="Salvar" aria-label="Salvar" className={`buttonPrimary headingS ${styles.btn}`}>
+        <button
+          type="submit"
+          title="Salvar"
+          aria-label="Salvar"
+          className={`buttonPrimary headingS ${styles.btn}`}
+        >
           Salvar
         </button>
       </form>
