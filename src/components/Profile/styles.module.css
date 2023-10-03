@@ -11,7 +11,7 @@
   padding: 20px;
 }
 
-.formFieldset:not(:last-child) {
+.formFieldset:not(:last-of-type) {
   margin: 0 0 24px 0;
 }
 
@@ -148,6 +148,7 @@
 
 .formGroupContainerError {
   position: relative;
+  width: 100%;
 }
 
 .formGroupContainerValidation {
@@ -173,7 +174,7 @@
   margin: 24px 0 0 0;
 }
 
-.btn{
+.btn {
   display: block;
   width: calc(100% - 32px);
   box-sizing: border-box;
@@ -184,4 +185,70 @@
   border-radius: 8px;
   cursor: pointer;
   margin: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .formFieldsetContainer {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .formFieldsetPictureLabel {
+    margin: 0;
+    flex: 0 0 140px;
+  }
+
+  .formLabelInputFile {
+    margin: 0;
+    flex: 0 0 193px;
+  }
+
+  .formInputFileContent {
+    padding: 61px 24px 60px 24px;
+  }
+
+  .messageWarning {
+    flex: 0 0 127px;
+  }
+
+  .formGroup {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .formGroupLabel {
+    margin: 0;
+    flex: 0 0 140px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .btn {
+    display: block;
+    width: auto;
+    margin: 20px 24px 20px auto;
+  }
+
+  .form {
+    margin: 0;
+  }
+
+  .lineDiviser {
+    margin: 40px 0 0 0;
+  }
+}
+
+@media screen and (min-width: 1180px) {
+  .formFieldsetPictureLabel {
+    flex: 0 0 240px;
+  }
+
+  .formGroupLabel {
+    flex: 0 0 240px;
+  }
 }
