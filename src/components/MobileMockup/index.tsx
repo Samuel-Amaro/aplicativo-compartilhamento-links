@@ -20,10 +20,8 @@ import StackOverflow from "../Icons/StackOverflow";
 import Link from "next/link";
 import ArrowRight from "../Icons/ArrowRight";
 import Freecodecamp from "../Icons/Freecodecamp";
-
-//TODO: TRABALHAR NESTE COMPONENTE PARA MOSTRAR FOTO DO PERFIL, EMAIL, NOME(FALTA SOMENTE ESTE CAMPOS)
-//TODO: AINDA NÃO CRIADOS PORQUE PRECISA DO CONTEXT ANTES
-//*DONE: OS LINKS CUSTOMIZADOS JA FEITOS 
+import { useProfileContext } from "@/context/ProfileContext";
+import Image from "next/image";
 
 function getIconPlatform(platform: string) {
   switch (platform) {
@@ -62,6 +60,7 @@ function getIconPlatform(platform: string) {
 
 export default function MobileMockup({ className }: { className?: string }) {
   const contextLinks = useLinksContext();
+  const profileContext = useProfileContext();
 
   const desktop = (
     <div
@@ -73,9 +72,32 @@ export default function MobileMockup({ className }: { className?: string }) {
         <PhoneMockup className={styles.ilustration} />
         <div className={styles.containerIlustrationWrapper}>
           <div className={styles.containerIlustrationContent}>
-            <span className={styles.profile}>Foto Perfil</span>
-            <p className={styles.name}>nome</p>
-            <p className={styles.email}>email</p>
+            {profileContext.profileDetails.dataUrlPicture ? (
+              <Image
+                src={profileContext.profileDetails.dataUrlPicture}
+                alt="Foto Perfil"
+                width={96}
+                height={96}
+                className={styles.profileImage}
+              />
+            ) : (
+              <span
+                className={styles.profile}
+              >{`${profileContext.profileDetails.firstName
+                .trim()
+                .charAt(0)}${profileContext.profileDetails.lastName
+                .trim()
+                .charAt(0)}`}</span>
+            )}
+            {profileContext.profileDetails.firstName &&
+              profileContext.profileDetails.lastName && (
+                <p className={styles.name}>
+                  {`${profileContext.profileDetails.firstName.trim()} ${profileContext.profileDetails.lastName.trim()}`}
+                </p>
+              )}
+            {profileContext.profileDetails.email && (
+              <p className={styles.email}>{profileContext.profileDetails.email}</p>
+            )}
             {contextLinks.customizeLinks.length > 0 && (
               <ul className={styles.list}>
                 {contextLinks.customizeLinks.map((customLink) => {
