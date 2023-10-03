@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <section>
+    <section className={styles.section}>
       <header className={styles.header}>
         <h1 className={`headingM ${styles.title}`}>Detalhes de perfil</h1>
         <p className={`bodyM ${styles.description}`}>Adicione seus dados para criar um toque pessoal ao seu perfil.</p>
