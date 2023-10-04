@@ -4,59 +4,11 @@ import useMatchMedia from "@/hooks/useMatchMedia";
 import styles from "./styles.module.css";
 import PhoneMockup from "../Icons/PhoneMockup";
 import { useLinksContext } from "@/context/LinksContext";
-import GitHub from "../Icons/GitHub";
-import FrontEndMentor from "../Icons/FrontEndMentor";
-import Twitter from "../Icons/Twitter";
-import Linkedin from "../Icons/Linkedin";
-import YouTube from "../Icons/YouTube";
-import Facebook from "../Icons/Facebook";
-import Twitch from "../Icons/Twitch";
-import Devto from "../Icons/Devto";
-import Codewars from "../Icons/Codewars";
-import Codepen from "../Icons/Codepen";
-import GitLab from "../Icons/GitLab";
-import HashNode from "../Icons/HashNode";
-import StackOverflow from "../Icons/StackOverflow";
 import Link from "next/link";
 import ArrowRight from "../Icons/ArrowRight";
-import Freecodecamp from "../Icons/Freecodecamp";
 import { useProfileContext } from "@/context/ProfileContext";
 import Image from "next/image";
-
-function getIconPlatform(platform: string) {
-  switch (platform) {
-    case "GitHub":
-      return <GitHub className={styles.iconPlatform} />;
-    case "Frontend Mentor":
-      return <FrontEndMentor className={styles.iconPlatform} isColor={true} />;
-    case "Twitter":
-      return <Twitter className={styles.iconPlatform} />;
-    case "Linkedln":
-      return <Linkedin className={styles.iconPlatform} />;
-    case "YouTube":
-      return <YouTube className={styles.iconPlatform} />;
-    case "Facebook":
-      return <Facebook className={styles.iconPlatform} />;
-    case "Twitch":
-      return <Twitch className={styles.iconPlatform} />;
-    case "Dev.to":
-      return <Devto className={styles.iconPlatform} isColor={true} />;
-    case "Codewars":
-      return <Codewars className={styles.iconPlatform} />;
-    case "Codepen":
-      return <Codepen className={styles.iconPlatform} />;
-    case "FreeCodeCamp":
-      return <Freecodecamp className={styles.iconPlatform} />;
-    case "GitLab":
-      return <GitLab className={styles.iconPlatform} />;
-    case "Hashnode":
-      return <HashNode className={styles.iconPlatform} />;
-    case "Stack Overflow":
-      return <StackOverflow className={styles.iconPlatform} />;
-    default:
-      break;
-  }
-}
+import { getIconPlatform } from "@/utils/utils";
 
 export default function MobileMockup({ className }: { className?: string }) {
   const contextLinks = useLinksContext();
@@ -81,13 +33,16 @@ export default function MobileMockup({ className }: { className?: string }) {
                 className={styles.profileImage}
               />
             ) : (
-              <span
-                className={styles.profile}
-              >{`${profileContext.profileDetails.firstName
-                .trim()
-                .charAt(0)}${profileContext.profileDetails.lastName
-                .trim()
-                .charAt(0)}`}</span>
+              profileContext.profileDetails.firstName &&
+              profileContext.profileDetails.lastName && (
+                <span
+                  className={styles.profile}
+                >{`${profileContext.profileDetails.firstName
+                  .trim()
+                  .charAt(0)}${profileContext.profileDetails.lastName
+                  .trim()
+                  .charAt(0)}`}</span>
+              )
             )}
             {profileContext.profileDetails.firstName &&
               profileContext.profileDetails.lastName && (
@@ -96,7 +51,9 @@ export default function MobileMockup({ className }: { className?: string }) {
                 </p>
               )}
             {profileContext.profileDetails.email && (
-              <p className={styles.email}>{profileContext.profileDetails.email}</p>
+              <p className={styles.email}>
+                {profileContext.profileDetails.email}
+              </p>
             )}
             {contextLinks.customizeLinks.length > 0 && (
               <ul className={styles.list}>
@@ -127,7 +84,10 @@ export default function MobileMockup({ className }: { className?: string }) {
                         }
                       >
                         <p className={styles.linkPlatformContent}>
-                          {getIconPlatform(customLink.plataform)}{" "}
+                          {getIconPlatform(
+                            customLink.plataform,
+                            styles.iconPlatform,
+                          )}{" "}
                           {customLink.plataform}
                         </p>
                         <ArrowRight
