@@ -137,3 +137,50 @@
 .listItem:not(:last-child) {
   margin: 0 0 20px 0;
 }
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0;
+    height: 100%;
+    position: relative;
+  }
+
+  .header {
+    padding: 24px 24px 255px 24px;
+    margin: 0;
+    background-color: var(--purple);
+    border-radius: 0px 0px 32px 32px;
+  }
+
+  .nav {
+    background-color: var(--White);
+    padding: 16px 16px 16px 24px;
+    border-radius: 12px;
+  }
+
+  .main {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    top: 228px;
+    left: 0;
+  }
+
+  .cardProfile {
+    max-width: 349px;
+    margin: 0 auto 24px auto;
+    padding: 48px 56px;
+    background-color: var(--White);
+    border-radius: 24px;
+    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .main {
+    top: 208px;
+  }
+}
