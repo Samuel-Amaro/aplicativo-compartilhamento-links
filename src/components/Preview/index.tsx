@@ -61,7 +61,7 @@ export default function Preview() {
             </button>
           </nav>
         </header>
-        <main>
+        <main className={styles.main}>
           <div className={styles.cardProfile}>
             {profileContext.profileDetails.dataUrlPicture ? (
               <Image
@@ -81,9 +81,9 @@ export default function Preview() {
             )}
             {profileContext.profileDetails.firstName &&
               profileContext.profileDetails.lastName && (
-                <p
+                <h1
                   className={`headingM ${styles.name}`}
-                >{`${profileContext.profileDetails.firstName.trim()} ${profileContext.profileDetails.lastName.trim()}`}</p>
+                >{`${profileContext.profileDetails.firstName.trim()} ${profileContext.profileDetails.lastName.trim()}`}</h1>
               )}
             {profileContext.profileDetails.email && (
               <Link
