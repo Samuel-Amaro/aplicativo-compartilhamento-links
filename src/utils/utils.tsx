@@ -1,5 +1,20 @@
 "use client";
 
+import Codepen from "@/components/Icons/Codepen";
+import Codewars from "@/components/Icons/Codewars";
+import Devto from "@/components/Icons/Devto";
+import Facebook from "@/components/Icons/Facebook";
+import Freecodecamp from "@/components/Icons/Freecodecamp";
+import FrontEndMentor from "@/components/Icons/FrontEndMentor";
+import GitHub from "@/components/Icons/GitHub";
+import GitLab from "@/components/Icons/GitLab";
+import HashNode from "@/components/Icons/HashNode";
+import Linkedin from "@/components/Icons/Linkedin";
+import StackOverflow from "@/components/Icons/StackOverflow";
+import Twitch from "@/components/Icons/Twitch";
+import Twitter from "@/components/Icons/Twitter";
+import YouTube from "@/components/Icons/YouTube";
+
 export type PropsIcon = { className?: string };
 
 export const patternsUrlsPlatforms: {
@@ -245,5 +260,40 @@ export function setLocalStorage(key: string, value: unknown) {
   if (typeof window !== "undefined") {
     const data = JSON.stringify(value);
     window.localStorage.setItem(key, data);
+  }
+}
+
+export function getIconPlatform(platform: string, className?: string) {
+  switch (platform) {
+    case "GitHub":
+      return <GitHub className={className} />;
+    case "Frontend Mentor":
+      return <FrontEndMentor className={className} isColor={true} />;
+    case "Twitter":
+      return <Twitter className={className} />;
+    case "Linkedln":
+      return <Linkedin className={className} />;
+    case "YouTube":
+      return <YouTube className={className} />;
+    case "Facebook":
+      return <Facebook className={className} />;
+    case "Twitch":
+      return <Twitch className={className} />;
+    case "Dev.to":
+      return <Devto className={className} isColor={true} />;
+    case "Codewars":
+      return <Codewars className={className} />;
+    case "Codepen":
+      return <Codepen className={className} />;
+    case "FreeCodeCamp":
+      return <Freecodecamp className={className} />;
+    case "GitLab":
+      return <GitLab className={className} />;
+    case "Hashnode":
+      return <HashNode className={className} />;
+    case "Stack Overflow":
+      return <StackOverflow className={className} />;
+    default:
+      break;
   }
 }
