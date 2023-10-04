@@ -19,3 +19,8 @@ export type CustomizeLink = {
   plataform: string;
   link: string;
 };
+
+export type PropsError = {
+  error: Error & { digest?: string }
+  reset: () => void
+};
