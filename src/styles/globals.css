@@ -151,7 +151,8 @@ body {
   background-color: #EC7100;
 }
 
-/*****styles error****/
+/*****STYLES ERRORS****/
+
 .error-container{
   width: 100%;
   height: 100%;
@@ -182,6 +183,35 @@ body {
 .error-container_title{
   font-weight: 700;
   color: var(--Dark-Grey);
+}
+
+/***STYLES NOT FOUND PAGE UI***/
+.notfound-container{
+  width: 100%;
+  height: 100vh;
+  background-color: var(--Light-Grey);
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.notfound-container_title{
+  font-weight: 700;
+  color: var(--Dark-Grey);
+}
+
+.notfound-container_text{
+  color: var(--Dark-Grey);
+}
+
+.notfound-container_link{
+  display: block;
+  text-decoration: none;
+  padding: 11px 27px;
+  border-radius: 12px;
 }
 
 @media screen and (min-width: 768px) {
