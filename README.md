@@ -75,7 +75,7 @@ Os usuários devem ser capazes de:
  - Responsive Web Design
  - Bem Metodology
 - [React](https://reactjs.org/) - JS library
- - Context API
+ - Context API com useReducers
  - Hooks, Custom Hooks
 - [Next.js](https://nextjs.org/) - React framework
  - App Router
