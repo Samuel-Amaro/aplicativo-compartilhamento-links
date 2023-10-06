@@ -227,7 +227,11 @@ export default function Dropdown({
   });
 
   return (
-    <div ref={refContainerDropdown} className={styles.containerDropdown}>
+    <div
+      ref={refContainerDropdown}
+      className={styles.containerDropdown}
+      data-testid="container-dropdown"
+    >
       <button
         type="button"
         title={
