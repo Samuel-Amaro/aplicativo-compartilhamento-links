@@ -319,9 +319,14 @@ export default function CustomizeLinks() {
                         <input
                           type="url"
                           id={`link${customLink.id}`}
-                          title={`Insira link no seguinte formato ${
+                          title={
                             datasValidation && datasValidation.urlPlaceholder
-                          }`}
+                              ? `Insira link no seguinte formato ${
+                                  datasValidation &&
+                                  datasValidation.urlPlaceholder
+                                }`
+                              : "Insira link no seguinte formato https://www.teste.com"
+                          }
                           required
                           value={customLink.link.toLowerCase()}
                           onChange={(e) =>
