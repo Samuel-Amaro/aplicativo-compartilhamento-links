@@ -9,7 +9,6 @@ import {
 import Notification from ".";
 import Save from "../Icons/Save";
 import React from "react";
-import { act } from "react-dom/test-utils";
 
 const mockSetShowNotification: jest.Mock<(show: string) => void> = jest.fn();
 
