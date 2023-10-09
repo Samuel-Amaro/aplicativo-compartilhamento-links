@@ -6,7 +6,5 @@ const CustomizeLinks = dynamic(
 );
 
 export default function Home() {
-  return (
-    <CustomizeLinks />
-  );
+  return <CustomizeLinks />;
 }
