@@ -22,5 +22,7 @@
     grid-template-columns: minmax(min-content, 560px) minmax(min-content, 810px);
     background-color: transparent;
     gap: 24px;
+    max-width: 1394px;
+    margin: 0 auto 0 auto;
   }
 }
