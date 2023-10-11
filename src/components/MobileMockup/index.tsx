@@ -32,30 +32,34 @@ export default function MobileMockup({ className }: { className?: string }) {
                 height={96}
                 className={styles.profileImage}
               />
+            ) : profileContext.profileDetails.firstName &&
+              profileContext.profileDetails.lastName ? (
+              <span
+                className={styles.profile}
+              >{`${profileContext.profileDetails.firstName
+                .trim()
+                .charAt(0)}${profileContext.profileDetails.lastName
+                .trim()
+                .charAt(0)}`}</span>
             ) : (
-              profileContext.profileDetails.firstName &&
-              profileContext.profileDetails.lastName && (
-                <span
-                  className={styles.profile}
-                >{`${profileContext.profileDetails.firstName
-                  .trim()
-                  .charAt(0)}${profileContext.profileDetails.lastName
-                  .trim()
-                  .charAt(0)}`}</span>
-              )
+              <span className={styles.skeletonProfileImage}></span>
             )}
             {profileContext.profileDetails.firstName &&
-              profileContext.profileDetails.lastName && (
-                <p className={styles.name}>
-                  {`${profileContext.profileDetails.firstName.trim()} ${profileContext.profileDetails.lastName.trim()}`}
-                </p>
-              )}
-            {profileContext.profileDetails.email && (
+            profileContext.profileDetails.lastName ? (
+              <p className={styles.name}>
+                {`${profileContext.profileDetails.firstName.trim()} ${profileContext.profileDetails.lastName.trim()}`}
+              </p>
+            ) : (
+              <span className={styles.skeletonName}></span>
+            )}
+            {profileContext.profileDetails.email ? (
               <p className={styles.email}>
                 {profileContext.profileDetails.email}
               </p>
+            ) : (
+              <span className={styles.skeletonEmail}></span>
             )}
-            {contextLinks.customizeLinks.length > 0 && (
+            {contextLinks.customizeLinks.length > 0 ? (
               <ul className={styles.list}>
                 {contextLinks.customizeLinks.map((customLink) => {
                   return (
@@ -104,6 +108,14 @@ export default function MobileMockup({ className }: { className?: string }) {
                     </li>
                   );
                 })}
+              </ul>
+            ) : (
+              <ul className={styles.skeletonList}>
+                <li className={styles.skeletonItemList}></li>
+                <li className={styles.skeletonItemList}></li>
+                <li className={styles.skeletonItemList}></li>
+                <li className={styles.skeletonItemList}></li>
+                <li className={styles.skeletonItemList}></li>
               </ul>
             )}
           </div>
