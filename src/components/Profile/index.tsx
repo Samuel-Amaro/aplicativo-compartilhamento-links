@@ -96,7 +96,6 @@ export default function Profile() {
     event.preventDefault();
     const formIsVal = formIsValid();
     if (formIsVal) {
-      console.log("form is valid");
       profileContext.addProfile(profileDetails);
       setShowNotification(true);
     }
