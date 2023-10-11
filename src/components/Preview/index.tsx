@@ -16,6 +16,7 @@ export default function Preview() {
   const profileContext = useProfileContext();
   const [btnShareIsActive, setBtnShareIsActive] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [showProfile, setShowProfile] = useState(true);
 
   useEffect(() => {
     if (btnShareIsActive) {
@@ -29,6 +30,20 @@ export default function Preview() {
       setBtnShareIsActive(false);
     }
   }, [showNotification]);
+
+  useEffect(() => {
+    if (
+      profileContext.profileDetails.firstName ||
+      profileContext.profileDetails.lastName ||
+      profileContext.profileDetails.email ||
+      profileContext.profileDetails.dataUrlPicture ||
+      customizeLinksContext.customizeLinks.length > 0
+    ) {
+      setShowProfile(true);
+      return;
+    }
+    setShowProfile(false);
+  }, [profileContext.profileDetails, customizeLinksContext.customizeLinks]);
 
   return (
     <>
@@ -62,91 +77,103 @@ export default function Preview() {
           </nav>
         </header>
         <main className={styles.main}>
-          <div className={styles.cardProfile}>
-            {profileContext.profileDetails.dataUrlPicture ? (
-              <Image
-                src={profileContext.profileDetails.dataUrlPicture}
-                alt="Foto Perfil"
-                width={104}
-                height={104}
-                className={styles.profileImage}
-              />
-            ) : (
-              profileContext.profileDetails.firstName &&
-              profileContext.profileDetails.lastName && (
-                <span
-                  className={styles.profileText}
-                >{`${profileContext.profileDetails.firstName.trim()}${profileContext.profileDetails.lastName.trim()}`}</span>
-              )
-            )}
-            {profileContext.profileDetails.firstName &&
-              profileContext.profileDetails.lastName && (
-                <h1
-                  className={`headingM ${styles.name}`}
-                >{`${profileContext.profileDetails.firstName.trim()} ${profileContext.profileDetails.lastName.trim()}`}</h1>
+          {showProfile ? (
+            <div className={styles.cardProfile}>
+              {profileContext.profileDetails.dataUrlPicture ? (
+                <Image
+                  src={profileContext.profileDetails.dataUrlPicture}
+                  alt="Foto Perfil"
+                  width={104}
+                  height={104}
+                  className={styles.profileImage}
+                />
+              ) : (
+                profileContext.profileDetails.firstName &&
+                profileContext.profileDetails.lastName && (
+                  <span
+                    className={styles.profileText}
+                  >{`${profileContext.profileDetails.firstName
+                    .trim()
+                    .trim()
+                    .charAt(0)}${profileContext.profileDetails.lastName
+                    .trim()
+                    .trim()
+                    .charAt(0)}`}</span>
+                )
               )}
-            {profileContext.profileDetails.email && (
-              <Link
-                href={`mailto:${profileContext.profileDetails.email}`}
-                target="_blank"
-                rel="external"
-                title="Email"
-                aria-label="Email"
-                className={`bodyM ${styles.linkEmail}`}
-              >
-                {profileContext.profileDetails.email}
-              </Link>
-            )}
-            {customizeLinksContext.customizeLinks.length > 0 && (
-              <ul className={styles.list}>
-                {customizeLinksContext.customizeLinks.map((customLink) => (
-                  <li key={customLink.id} className={styles.listItem}>
-                    <Link
-                      href={customLink.link}
-                      target="_blank"
-                      rel="external"
-                      title={`Visitar perfil ${customLink.plataform}`}
-                      aria-label={`Visitar perfil ${customLink.plataform}`}
-                      className={
-                        customLink.plataform
-                          .split(/[\s\/.]/gi)
-                          .join("")
-                          .toLowerCase() === "frontendmentor"
-                          ? `bg${customLink.plataform
-                              .split(/[\s\/.]/gi)
-                              .join("")
-                              .toLowerCase()} bodyS ${styles.linkPlatform} ${
-                              styles.linkPlatformFrontendMentor
-                            }`
-                          : `bg${customLink.plataform
-                              .split(/[\s\/.]/gi)
-                              .join("")
-                              .toLowerCase()} bodyS ${styles.linkPlatform}`
-                      }
-                    >
-                      <p className={`bodyM ${styles.linkPlatformContent}`}>
-                        {getIconPlatform(
-                          customLink.plataform,
-                          styles.iconPlatform,
-                        )}{" "}
-                        {customLink.plataform}
-                      </p>
-                      <ArrowRight
+              {profileContext.profileDetails.firstName &&
+                profileContext.profileDetails.lastName && (
+                  <h1
+                    className={`headingM ${styles.name}`}
+                  >{`${profileContext.profileDetails.firstName.trim()} ${profileContext.profileDetails.lastName.trim()}`}</h1>
+                )}
+              {profileContext.profileDetails.email && (
+                <Link
+                  href={`mailto:${profileContext.profileDetails.email}`}
+                  target="_blank"
+                  rel="external"
+                  title="Email"
+                  aria-label="Email"
+                  className={`bodyM ${styles.linkEmail}`}
+                >
+                  {profileContext.profileDetails.email}
+                </Link>
+              )}
+              {customizeLinksContext.customizeLinks.length > 0 && (
+                <ul className={styles.list}>
+                  {customizeLinksContext.customizeLinks.map((customLink) => (
+                    <li key={customLink.id} className={styles.listItem}>
+                      <Link
+                        href={customLink.link}
+                        target="_blank"
+                        rel="external"
+                        title={`Visitar perfil ${customLink.plataform}`}
+                        aria-label={`Visitar perfil ${customLink.plataform}`}
                         className={
                           customLink.plataform
                             .split(/[\s\/.]/gi)
                             .join("")
                             .toLowerCase() === "frontendmentor"
-                            ? `${styles.linkPlatformIcon} ${styles.linkPlatformIconFrontendMentor}`
-                            : styles.linkPlatformIcon
+                            ? `bg${customLink.plataform
+                                .split(/[\s\/.]/gi)
+                                .join("")
+                                .toLowerCase()} bodyS ${styles.linkPlatform} ${
+                                styles.linkPlatformFrontendMentor
+                              }`
+                            : `bg${customLink.plataform
+                                .split(/[\s\/.]/gi)
+                                .join("")
+                                .toLowerCase()} bodyS ${styles.linkPlatform}`
                         }
-                      />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+                      >
+                        <p className={`bodyM ${styles.linkPlatformContent}`}>
+                          {getIconPlatform(
+                            customLink.plataform,
+                            styles.iconPlatform,
+                          )}{" "}
+                          {customLink.plataform}
+                        </p>
+                        <ArrowRight
+                          className={
+                            customLink.plataform
+                              .split(/[\s\/.]/gi)
+                              .join("")
+                              .toLowerCase() === "frontendmentor"
+                              ? `${styles.linkPlatformIcon} ${styles.linkPlatformIconFrontendMentor}`
+                              : styles.linkPlatformIcon
+                          }
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ) : (
+            <span className={styles.message}>
+              Sem Dados de Profile para visualização
+            </span>
+          )}
         </main>
       </div>
       {showNotification && (
