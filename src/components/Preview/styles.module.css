@@ -163,10 +163,12 @@
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     top: 228px;
     left: 0;
+    max-height: calc(100% - 228px);
+    overflow: auto;
   }
 
   .cardProfile {
@@ -182,5 +184,6 @@
 @media screen and (min-width: 950px) {
   .main {
     top: 208px;
+    max-height: calc(100% - 208px);
   }
 }
