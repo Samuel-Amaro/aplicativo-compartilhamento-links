@@ -57,8 +57,8 @@ Os usuários devem ser capazes de:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Repositorio: [Repositorio Projeto](https://github.com/Samuel-Amaro/aplicativo-compartilhamento-links)
+- URL Resultado: [Resultado](https://aplicativo-compartilhamento-links.vercel.app/)
 
 ## Meu Processo
 
